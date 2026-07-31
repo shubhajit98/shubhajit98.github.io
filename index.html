@@ -225,7 +225,7 @@ const projects = [
     desc: "ROS2-based embedded insole for rehabilitation and gait analysis. Used CASIA-D pressure data to cut Hall-effect sensor count from 73 to 50 without losing critical resolution, integrated IMU/temperature sensing over SPI/I2C on ESP32-S3, and redesigned the flexible PCB for in-shoe reliability and lower manufacturing cost.",
     tags: ["ROS2", "PCB Design", "ESP32", "Sensor Fusion", "Academic Research"],
     featured: true,
-    links: { writeup: "/e-sole-paper.pdf"}
+    links: { paper: "/e-sole-paper.pdf"}
   },
   {
     title: "Drone Attitude Stabilization",
@@ -234,7 +234,7 @@ const projects = [
     desc: "Model-based design project: derived drone dynamics in Simulink/Simscape and generated embedded C directly from the model. Built and tuned a complementary filter fusing IMU accelerometer and gyroscope data, then designed and tuned a discrete-time LQR controller, validated through disturbance-rejection and fault-tolerance testing.",
     tags: ["Simulink", "LQR", "Sensor Fusion", "Academic Research"],
     featured: true,
-    links: {writeup: "/drone-attitude-paper.pdf"}
+    links: {paper: "/drone-attitude-paper.pdf"}
   },
   {
     title: "Autonomous Navigation & Obstacle Avoidance",
@@ -370,6 +370,7 @@ function linkLabel(key){
   if(key === 'demo') return 'Live demo →';
   if(key === 'github') return 'GitHub →';
   if(key === 'writeup') return 'Write-up →';
+  if(key === 'paper') return 'Read paper →';
   if(key === 'thesis') return 'Read thesis →';
   return key + ' →';
 }
@@ -402,7 +403,8 @@ function renderProjects(){
           ${p.links && p.links.github ? `<a href="${p.links.github}" target="_blank">${linkLabel('github')}</a>` : ''}
           ${p.links && p.links.thesis ? `<a href="${p.links.thesis}" target="_blank">${linkLabel('thesis')}</a>` : ''}
           ${p.links && p.links.writeup ? `<a href="${p.links.writeup}" target="_blank">${linkLabel('writeup')}</a>` : ''}
-          ${(!p.links || (!p.links.demo && !p.links.github && !p.links.thesis && !p.links.writeup)) ? '<span style="font-family:var(--mono); font-size:11px; color:var(--ink-soft); opacity:0.6;">link coming soon</span>' : ''}
+          ${p.links && p.links.paper ? `<a href="${p.links.writeup}" target="_blank">${linkLabel('paper')}</a>` : ''}
+          ${(!p.links || (!p.links.demo && !p.links.github && !p.links.thesis && !p.links.writeup && !p.links.paper)) ? '<span style="font-family:var(--mono); font-size:11px; color:var(--ink-soft); opacity:0.6;">link coming soon</span>' : ''}
         </div>
       </div>
     `;
