@@ -172,9 +172,14 @@
     <div class="focus-label">Skills</div>
     <div class="focus-row">
       <span class="focus-chip skill-chip">MATLAB/Simulink</span>
+      <span class="focus-chip skill-chip">Model-In-Loop (MIL)</span>
+      <span class="focus-chip skill-chip">Software-In-Loop (SIL)</span>
       <span class="focus-chip skill-chip">3D CAD</span>
       <span class="focus-chip skill-chip">PCB Design</span>
       <span class="focus-chip skill-chip">Embedded C</span>
+      <span class="focus-chip skill-chip">ARM Cortex-M</span>
+      <span class="focus-chip skill-chip">STM32</span>
+      <span class="focus-chip skill-chip">ESP32</span>
       <span class="focus-chip skill-chip">C/C++</span>
       <span class="focus-chip skill-chip">Python</span>
       <span class="focus-chip skill-chip">ROS2</span>
@@ -183,6 +188,7 @@
       <span class="focus-chip skill-chip">RTOS</span>
       <span class="focus-chip skill-chip">Linux</span>
       <span class="focus-chip skill-chip">Git/Version Control</span>
+      <span class="focus-chip skill-chip">Docker</span>
       <span class="focus-chip skill-chip">Power Electronics</span>
       <span class="focus-chip skill-chip">Functional Safety</span>
       <span class="focus-chip skill-chip">Communication Systems</span>
@@ -190,6 +196,8 @@
       <span class="focus-chip skill-chip">CI/CD</span>
       <span class="focus-chip skill-chip">Vehicle Dynamics</span>
       <span class="focus-chip skill-chip">Academic Research</span>
+      <span class="focus-chip skill-chip">Agile/SCRUM</span>
+      <span class="focus-chip skill-chip">JIRA/Confluence</span>
     </div>
   </header>
 
@@ -228,16 +236,16 @@ const projects = [
   {
     title: "Bachelor Thesis: UV-C Disinfection Robot",
     tier: 2,
-    domains: ["Autonomous Systems & Robotics", "3D CAD"],
-    desc: "Bachelor thesis: a semi-autonomous UV-C disinfection robot, built from structured product development, translating customer needs into engineering specs. Combined PIR, ultrasonic, and ESP32-camera sensor fusion for navigation and human-safety shutdown, modeled the full assembly in SolidWorks, and validated motor torque, battery sizing, UV dosage, and structural buckling analytically.",
-    tags: ["SolidWorks", "Sensor Fusion", "ESP32"],
+    domains: ["Autonomous Systems & Robotics"],
+    desc: "Bachelor thesis: a semi-autonomous UV-C disinfection robot, built from structured product development, translating customer needs into engineering specs. Combined PIR, ultrasonic, and ESP32-camera sensor fusion for navigation and human-safety shutdown, modeled the full assembly in 3D CAD, and validated motor torque, battery sizing, UV dosage, and structural buckling analytically.",
+    tags: ["3D CAD", "Sensor Fusion", "ESP32"],
     featured: false,
     links: {thesis: "/bachelor-thesis.pdf"}
   },
   {
     title: "Smart E-Sole System (Aurora Walker v2)",
     tier: 3,
-    domains: ["Embedded Systems", "3D CAD"],
+    domains: ["Embedded Systems"],
     desc: "ROS2-based embedded insole for rehabilitation and gait analysis. Used CASIA-D pressure data to cut Hall-effect sensor count from 73 to 50 without losing critical resolution, integrated IMU/temperature sensing over SPI/I2C on ESP32-S3, and redesigned the flexible PCB for in-shoe reliability and lower manufacturing cost.",
     tags: ["ROS2", "PCB Design", "ESP32", "Sensor Fusion", "Academic Research"],
     featured: true,
@@ -264,9 +272,9 @@ const projects = [
   {
     title: "Digital Communication System & ARQ Protocol",
     tier: 3,
-    domains: ["Communication Systems", "MATLAB/Simulink"],
+    domains: ["Communication Systems"],
     desc: "Implemented PAM baseband transceivers with pulse shaping and matched filtering, validating bit-error-rate performance against theoretical models across channel conditions. Built a Stop-and-Wait ARQ protocol with multiple error-detection methods and tuned frame length/timeout to cut transmission time by over 90%.",
-    tags: [ "Communication Systems", "Protocol Design"],
+    tags: [ "Communication Systems", "MATLAB/Simulink", "Protocol Design"],
     featured: false,
     links: {}
   },
@@ -292,18 +300,18 @@ const projects = [
   {
     title: "Adaptive Cruise Control & Direction Detection",
     tier: 4,
-    domains: ["Model Based Design", "Automotive", "MATLAB/Simulink", "Controls"],
+    domains: ["Model Based Design", "Automotive", "Controls"],
     desc: "Model-based control system fusing camera, steering, LiDAR, and RADAR to detect vehicle direction and maintain safe following distance. Signals were organized in a Simulink Data Dictionary, with control logic validated through MIL and SIL testing under MAAB guidelines and translated into auto-generated code.",
-    tags: ["Simulink", "Sensor Fusion", "MIL/SIL Testing", "ADAS"],
+    tags: ["MATLAB/Simulink", "Sensor Fusion", "MIL/SIL Testing", "ADAS"],
     featured: true,
     links: {}
   },
   {
     title: "Fixed-Wing UAV Development",
     tier: 4,
-    domains: ["Autonomous Systems & Robotics","3D CAD", "Controls"],
+    domains: ["Autonomous Systems & Robotics", "Controls"],
     desc: "Designed and built an aircraft's fuselage, wings, and control surfaces in CAD, constructed from Styrofoam and balsa. Integrated servos, a BLDC motor, GPS, and camera with a Pixhawk flight controller programmed via MAVSDK/MAVLink, then tuned PID parameters and validated performance through real flight testing.",
-    tags: ["SolidWorks", "PID", "Sensor Fusion"],
+    tags: ["3D CAD", "PID", "Sensor Fusion"],
     featured: false,
     links: {}
   },
@@ -311,9 +319,9 @@ const projects = [
   {
     title: "Battery State-of-Charge Estimation",
     tier: 4,
-    domains: ["Energy", "Automotive", "MATLAB/Simulink"],
+    domains: ["Energy", "Automotive"],
     desc: "Simulated and compared Coulomb counting algorithms for battery SOC across driving, charging, and discharging conditions using MATLAB/Simulink, and analyzed closed-loop BMS performance with a low-level design model.",
-    tags: ["BMS"],
+    tags: ["MATLAB/Simulink","BMS"],
     featured: false,
     links: {}
   },
@@ -321,9 +329,9 @@ const projects = [
   {
     title: "EV: Drivetrain Simulation & Analysis",
     tier: 4,
-    domains: ["Power Electronics","Automotive", "MATLAB/Simulink"],
+    domains: ["Automotive", "MATLAB/Simulink"],
     desc: "Studied the four main categories of power converter circuits used in electric and hybrid electric vehicle drivetrains — AC-DC, DC-DC, DC-AC, and AC-AC converters — analyzing how each stage manages power flow between the battery, motor, and grid.",
-    tags: [  "Power Converters"],
+    tags: [ "Power Electronics", "Power Converters"],
     featured: false,
     links: {}
   },
@@ -331,8 +339,8 @@ const projects = [
     title: "HEV: DC Motor Simulation & Analysis",
     tier: 4,
     desc: "Simulated closed-loop speed control of a DC motor using a BJT H-bridge and a Four-Quadrant Chopper DC Drive in MATLAB/Simulink, analyzing armature current behavior and comparing chopper-based control against the H-bridge approach.",
-    domains: ["Power Electronics","Automotive", "MATLAB/Simulink"],
-    tags: ["Motor Drives"],
+    domains: ["Automotive"],
+    tags: ["Power Electronics", "Motor Drives", "MATLAB/Simulink"],
     featured: false,
     links: {}
   },
@@ -349,8 +357,8 @@ const projects = [
     title: "Multi Body Dynamics: Piston Assembly & Valve Train Simulation",
     tier: 4,
     domains: ["Automotive", "3D CAD"],
-    desc: "SolidWorks Motion Analysis studies on IC engine components: simulated the piston assembly's reciprocating motion through the connecting rod and crankshaft, and modeled valve train behavior across varying cam lift, speed, and material parameters.",
-    tags: ["SolidWorks","Multi Body Dynamics", "Motion Analysis" ],
+    desc: "3D CAD Motion Analysis studies on IC engine components: simulated the piston assembly's reciprocating motion through the connecting rod and crankshaft, and modeled valve train behavior across varying cam lift, speed, and material parameters.",
+    tags: ["3D CAD","Multi Body Dynamics", "Motion Analysis" ],
     featured: false,
     links: {}
   },
