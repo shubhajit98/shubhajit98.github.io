@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shubhajit Sahoo — Project Index</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEF1F6;
+    --bg-panel:#FFFFFF;
+    --ink:#1B2A4A;
+    --ink-soft:#4B5A78;
+    --line:#D6DCE6;
+    --accent:#F2A73B;
+    --accent-ink:#7A4E00;
+    --mono:'JetBrains Mono', monospace;
+    --sans:'Space Grotesk', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+
+  .grid-bg{
+    position:fixed; inset:0; z-index:-1;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:40px 40px;
+    opacity:0.35;
+  }
+
+  .wrap{max-width:920px; margin:0 auto; padding:0 24px;}
+
+  header.hero{padding:72px 0 40px;}
+  .eyebrow{
+    font-family:var(--mono); font-size:13px; color:var(--accent-ink);
+    background:rgba(242,167,59,0.18); display:inline-block;
+    padding:4px 10px; border-radius:4px; letter-spacing:0.02em;
+    margin-bottom:20px;
+  }
+  h1{
+    font-size:clamp(36px, 6vw, 56px);
+    font-weight:700; letter-spacing:-0.02em; line-height:1.05;
+    margin-bottom:14px;
+  }
+  .role{font-size:19px; color:var(--ink-soft); max-width:560px; margin-bottom:28px;}
+  .contact-row{display:flex; flex-wrap:wrap; gap:10px;}
+  .contact-row a{
+    font-family:var(--mono); font-size:13px;
+    border:1px solid var(--line); background:var(--bg-panel);
+    padding:8px 14px; border-radius:6px; text-decoration:none;
+    transition:border-color 0.15s, transform 0.15s;
+  }
+  .contact-row a:hover{border-color:var(--accent-ink); transform:translateY(-1px);}
+
+  .focus-label{
+    font-family:var(--mono); font-size:12px; color:var(--ink-soft);
+    text-transform:uppercase; letter-spacing:0.04em; margin:26px 0 10px;
+  }
+  .focus-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .focus-chip{
+    font-family:var(--mono); font-size:12px; color:var(--ink);
+    background:rgba(27,42,74,0.06); border:1px solid var(--line);
+    padding:6px 12px; border-radius:20px;
+  }
+
+  .stats{
+    display:flex; gap:0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    margin:32px 0 48px;
+  }
+  .stat{flex:1; padding:18px 0; border-right:1px solid var(--line);}
+  .stat:last-child{border-right:none;}
+  .stat b{display:block; font-size:26px; font-weight:700;}
+  .stat span{font-family:var(--mono); font-size:12px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.04em;}
+
+  .project-count{font-family:var(--mono); font-size:12px; color:var(--ink-soft); margin-bottom:16px;}
+
+  .tier-heading{
+    font-family:var(--mono); font-size:13px; font-weight:600;
+    color:var(--accent-ink); text-transform:uppercase; letter-spacing:0.04em;
+    margin:36px 0 14px; padding-bottom:8px; border-bottom:1px solid var(--line);
+  }
+  .tier-heading:first-child{ margin-top:0; }
+
+  .project-card{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:8px;
+    padding:22px 24px; margin-bottom:14px;
+    display:flex; justify-content:space-between; align-items:flex-start; gap:20px;
+    transition:border-color 0.15s, transform 0.15s;
+  }
+  .project-card:hover{border-color:var(--accent-ink); transform:translateX(2px);}
+  .project-main{flex:1; min-width:0;}
+  .project-title-row{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:6px;}
+  .project-title{font-size:19px; font-weight:600;}
+  .project-featured{
+    font-family:var(--mono); font-size:10px; color:var(--accent-ink);
+    background:rgba(242,167,59,0.18); padding:2px 8px; border-radius:4px;
+    text-transform:uppercase; letter-spacing:0.03em;
+  }
+  .project-domain{
+    font-family:var(--mono); font-size:10px; color:var(--ink-soft);
+    border:1px solid var(--line); padding:2px 8px; border-radius:4px;
+    text-transform:uppercase; letter-spacing:0.03em;
+  }
+  .project-desc{font-size:14.5px; color:var(--ink-soft); margin-bottom:12px; max-width:600px;}
+  .project-tags{display:flex; flex-wrap:wrap; gap:6px;}
+  .project-tags span{
+    font-family:var(--mono); font-size:11px; color:var(--ink-soft);
+    border:1px solid var(--line); padding:3px 8px; border-radius:4px;
+  }
+  .project-links{display:flex; flex-direction:column; gap:8px; flex-shrink:0; align-items:flex-end;}
+  .project-links a{
+    font-family:var(--mono); font-size:12.5px; white-space:nowrap;
+    text-decoration:none; color:var(--ink);
+    border-bottom:1px solid var(--ink); padding-bottom:1px;
+  }
+  .project-links a:hover{color:var(--accent-ink); border-color:var(--accent-ink);}
+
+  footer{
+    text-align:center; padding:60px 0 40px;
+    font-family:var(--mono); font-size:12px; color:var(--ink-soft);
+  }
+
+  @media (max-width:640px){
+    .project-card{flex-direction:column;}
+    .project-links{flex-direction:row; align-items:center;}
+    .stats{flex-wrap:wrap;}
+    .stat{flex:1 1 50%; border-bottom:1px solid var(--line);}
+  }
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">// project index</div>
+    <h1>Shubhajit Sahoo</h1>
+    <p class="role">Systems, Control &amp; Mechatronics MSc student working across a variety of autonomous systems, controls, and lately working on data-driven approach for my master's thesis. <!--In my private life I am quite casual, social and spontaneous while on the contrary at work, I like to get a holistic view of a problem and work at it until it is solved. --></p>
+    <div class="contact-row">
+      <a href="mailto:Shubhajitsahoo2024@gmail.com">Shubhajitsahoo2024@gmail.com</a>
+      <a href="mailto:sahoos@chalmers.se">sahoos@chalmers.se</a>
+      <a href="https://linkedin.com/in/shubhajit-sahoo" target="_blank">LinkedIn</a>
+      <!-- TODO: replace with your GitHub, or remove this line if you don't use GitHub -->
+      <!-- <a href="https://github.com/REPLACE-ME" target="_blank">GitHub</a> -->
+      <!-- <a href="/resume.pdf" target="_blank">Download resume →</a> -->
+    </div>
+    <div class="focus-label">Focus areas</div>
+    <div class="focus-row">
+      <span class="focus-chip">Embedded Systems</span>
+      <span class="focus-chip">Controls</span>
+      <span class="focus-chip">Model Based Design</span>
+      <span class="focus-chip">Autonomous Systems &amp; Robotics</span>
+      <span class="focus-chip">Perception</span>
+      <span class="focus-chip">Machine Learning</span>
+      <span class="focus-chip">Automotive</span>
+      <span class="focus-chip">Energy</span>
+      <span class="focus-chip">MATLAB/Simulink</span>
+      <span class="focus-chip">3D CAD</span>
+      <span class="focus-chip">PCB Design</span>
+      <span class="focus-chip">Embedded C</span>
+      <span class="focus-chip">C/C++</span>
+      <span class="focus-chip">Python</span>
+      <span class="focus-chip">ROS2</span>
+      <span class="focus-chip">Sensor Fusion</span>
+      <span class="focus-chip">Signal Processing</span>
+      <span class="focus-chip">Communication Systems</span>
+      <span class="focus-chip">Computer Architecture</span>
+    </div>
+  </header>
+
+  <div class="stats" id="statsRow"></div>
+
+  <div class="project-count" id="projectCount"></div>
+  <div id="projectList"></div>
+</div>
+
+<footer>Built and maintained by hand — last updated <span id="lastUpdated"></span></footer>
+
+<script>
+/* ============================================================
+   EDIT YOUR PROJECTS HERE.
+   - tier: controls which section a project appears under —
+       1 = Master's Thesis
+       2 = Bachelor's Thesis
+       3 = Master's — Projects & Coursework
+       4 = Bachelor's — Projects & Coursework
+     (edit tierNames below if you want different section titles)
+   - domains: shown as the small "type" badge(s) on each card
+   - featured: true pins it near the top WITHIN its tier
+   - tags: shown as small chips on the card (skills used)
+   - links: any of demo / github / writeup — omit ones you don't have
+   ============================================================ */
+const projects = [
+  {
+    title: "Master thesis: Automatic Classification of LiDAR Point Cloud Data",
+    tier: 1,
+    domains: ["Perception", "Machine Learning"],
+    desc: "Master's thesis at Atritec AB — end-to-end deep learning pipeline detecting moving vehicles in 100M+ point LiDAR scans from real road surveys. Trained a RandLA-Net model with attention-based feature aggregation, transferring from SemanticKITTI, reaching 30%+ IoU across 13 survey tiles. Deployed on the Chalmers C3SE Vera HPC cluster in containerized environments.",
+    tags: ["Deep Learning", "Point Cloud", "Python", "HPC"],
+    featured: false,
+    links: {}
+  },
+  {
+    title: "Bachelor Thesis: UV-C Disinfection Robot",
+    tier: 2,
+    domains: ["Autonomous Systems & Robotics", "3D CAD"],
+    desc: "Bachelor thesis: a semi-autonomous UV-C disinfection robot, built from structured product development, translating customer needs into engineering specs. Combined PIR, ultrasonic, and ESP32-camera sensor fusion for navigation and human-safety shutdown, modeled the full assembly in SolidWorks, and validated motor torque, battery sizing, UV dosage, and structural buckling analytically.",
+    tags: ["SolidWorks", "Sensor Fusion", "ESP32"],
+    featured: false,
+    links: {}
+  },
+  {
+    title: "Smart E-Sole System (Aurora Walker v2)",
+    tier: 3,
+    domains: ["Embedded Systems"],
+    desc: "ROS2-based embedded insole for rehabilitation and gait analysis. Used CASIA-D pressure data to cut Hall-effect sensor count from 73 to 50 without losing critical resolution, integrated IMU/temperature sensing over SPI/I2C on ESP32-S3, and redesigned the flexible PCB for in-shoe reliability and lower manufacturing cost.",
+    tags: ["ROS2", "PCB Design", "ESP32", "Sensor Fusion", "3D CAD"],
+    featured: true,
+    links: {}
+  },
+  {
+    title: "Drone Attitude Stabilization",
+    tier: 3,
+    domains: ["Controls", "Model Based Design"],
+    desc: "Model-based design project: derived drone dynamics in Simulink/Simscape and generated embedded C directly from the model. Built and tuned a complementary filter fusing IMU accelerometer and gyroscope data, then designed and tuned a discrete-time LQR controller, validated through disturbance-rejection and fault-tolerance testing.",
+    tags: ["Simulink", "LQR", "Sensor Fusion"],
+    featured: true,
+    links: {}
+  },
+  {
+    title: "Autonomous Navigation & Obstacle Avoidance",
+    tier: 3,
+    domains: ["Autonomous Systems & Robotics", "Controls"],
+    desc: "ROS2 stack for a differential-drive robot in Gazebo/RViz — custom publishers, subscribers, messages, and services, plus a URDF model with accurate LiDAR/IMU/ultrasonic placement. Implemented a P-controller with spline-based trajectory generation and fused LiDAR/ultrasonic data for real-time obstacle avoidance.",
+    tags: ["ROS2", "Gazebo", "Sensor Fusion", "C++", "Python Scripting"],
+    featured: false,
+    links: {}
+  },
+  {
+    title: "Digital Communication System & ARQ Protocol",
+    tier: 3,
+    domains: ["Communication Systems", "MATLAB/Simulink"],
+    desc: "Implemented PAM baseband transceivers with pulse shaping and matched filtering, validating bit-error-rate performance against theoretical models across channel conditions. Built a Stop-and-Wait ARQ protocol with multiple error-detection methods and tuned frame length/timeout to cut transmission time by over 90%.",
+    tags: [ "Communication Systems", "Protocol Design"],
+    featured: false,
+    links: {}
+  },
+  {
+    title: "Computer Architecture & SimpleScalar Design",
+    tier: 3,
+    domains: ["Computer Architecture"],
+    desc: "Simulated and tuned cache configuration, branch prediction, and out-of-order pipeline settings, adjusting core width, reorder buffer, load-store queue, and L2 cache to cut CPI by up to 18x within a fixed power budget. Compared power, energy, and chip-area trade-offs across designs.",
+    tags: ["Computer Architecture", "SimpleScalar", "Performance"],
+    featured: false,
+    links: {}
+  },
+  {
+    title: "STM32F446RE Device Driver Development",
+    tier: 4,
+    domains: ["Embedded Systems" ],
+    desc: "Bare-metal peripheral driver APIs written from scratch against the CMSIS standard — GPIO, RCC, SPI, USART/UART, and I2C — built from a close read of the datasheet and reference manual in STM32Cube IDE.",
+    tags: ["STM32", "CMSIS", "Bare-metal", "Peripheral Interfaces"],
+    featured: true,
+    // TODO: add the GitHub link mentioned on your resume ("Click to Preview")
+    links: {}
+  },
+  {
+    title: "Adaptive Cruise Control & Direction Detection",
+    tier: 4,
+    domains: ["Model Based Design", "Automotive", "MATLAB/Simulink", "Controls"],
+    desc: "Model-based control system fusing camera, steering, LiDAR, and RADAR to detect vehicle direction and maintain safe following distance. Signals were organized in a Simulink Data Dictionary, with control logic validated through MIL and SIL testing under MAAB guidelines and translated into auto-generated code.",
+    tags: ["Simulink", "Sensor Fusion", "MIL/SIL Testing", "ADAS"],
+    featured: true,
+    links: {}
+  },
+  {
+    title: "Fixed-Wing UAV Development",
+    tier: 4,
+    domains: ["Autonomous Systems & Robotics","3D CAD", "Controls"],
+    desc: "Designed and built an aircraft's fuselage, wings, and control surfaces in CAD, constructed from Styrofoam and balsa. Integrated servos, a BLDC motor, GPS, and camera with a Pixhawk flight controller programmed via MAVSDK/MAVLink, then tuned PID parameters and validated performance through real flight testing.",
+    tags: ["SolidWorks", "PID", "Sensor Fusion"],
+    featured: false,
+    links: {}
+  },
+  
+  {
+    title: "Battery State-of-Charge Estimation",
+    tier: 4,
+    domains: ["Energy", "Automotive", "MATLAB/Simulink"],
+    desc: "Simulated and compared Coulomb counting algorithms for battery SOC across driving, charging, and discharging conditions using MATLAB/Simulink, and analyzed closed-loop BMS performance with a low-level design model.",
+    tags: ["BMS"],
+    featured: false,
+    links: {}
+  },
+
+  {
+    title: "EV: Drivetrain Simulation & Analysis",
+    tier: 4,
+    domains: ["Power Electronics","Automotive", "MATLAB/Simulink"],
+    desc: "Studied the four main categories of power converter circuits used in electric and hybrid electric vehicle drivetrains — AC-DC, DC-DC, DC-AC, and AC-AC converters — analyzing how each stage manages power flow between the battery, motor, and grid.",
+    tags: [  "Power Converters"],
+    featured: false,
+    links: {}
+  },
+  {
+    title: "HEV: DC Motor Simulation & Analysis",
+    tier: 4,
+    desc: "Simulated closed-loop speed control of a DC motor using a BJT H-bridge and a Four-Quadrant Chopper DC Drive in MATLAB/Simulink, analyzing armature current behavior and comparing chopper-based control against the H-bridge approach.",
+    domains: ["Power Electronics","Automotive", "MATLAB/Simulink"],
+    tags: ["Motor Drives"],
+    featured: false,
+    links: {}
+  },
+  {
+    title: "Vehicle Dynamics: Braking, Suspension & Steering Analysis",
+    tier: 4,
+    domains: ["Automotive"],
+    desc: "A set of vehicle dynamics studies: calculated braking energy requirements and electric-mechanical brake coordination for a driving cycle, optimized anti-roll bar stiffness distribution from roll moment and load transfer, and derived steering geometry parameters (caster, kingpin inclination, scrub radius) and their effect on restoring moment.",
+    tags: ["Vehicle Dynamics", "Suspension Design", "Steering Systems"],
+    featured: false,
+    links: {}
+  },
+  {
+    title: "Multi Body Dynamics: Piston Assembly & Valve Train Simulation",
+    tier: 4,
+    domains: ["Automotive", "3D CAD"],
+    desc: "SolidWorks Motion Analysis studies on IC engine components: simulated the piston assembly's reciprocating motion through the connecting rod and crankshaft, and modeled valve train behavior across varying cam lift, speed, and material parameters.",
+    tags: ["SolidWorks","Multi Body Dynamics", "Motion Planning" ],
+    featured: false,
+    links: {}
+  },
+];
+
+/* ============================================================
+   Below this line is display logic — you shouldn't need to touch it.
+   No filtering: every project is always shown, grouped by tier,
+   with featured projects surfaced first within each tier.
+   ============================================================ */
+const tierNames = {
+  1: "Master's Thesis",
+  2: "Bachelor's Thesis",
+  3: "Master's — Projects & Coursework",
+  4: "Bachelor's — Projects & Coursework"
+};
+
+const projectList = document.getElementById('projectList');
+const projectCountEl = document.getElementById('projectCount');
+const statsRow = document.getElementById('statsRow');
+
+function renderStats(){
+  const withDemo = projects.filter(p => p.links && p.links.demo).length;
+  const skillCount = document.querySelectorAll('.focus-chip').length;
+  statsRow.innerHTML = `
+    <div class="stat"><b>${projects.length}</b><span>Total projects</span></div>
+    <div class="stat"><b>${skillCount}</b><span>Skills &amp; focus areas</span></div>
+    <div class="stat"><b>${withDemo}</b><span>Live demos</span></div>
+  `;
+}
+
+function linkLabel(key){
+  if(key === 'demo') return 'Live demo →';
+  if(key === 'github') return 'GitHub →';
+  if(key === 'writeup') return 'Write-up →';
+  return key + ' →';
+}
+
+function renderProjects(){
+  const sorted = [...projects].sort((a,b) => (a.tier - b.tier) || ((b.featured === true) - (a.featured === true)));
+  projectCountEl.textContent = `${projects.length} projects`;
+
+  let html = '';
+  let lastTier = null;
+
+  sorted.forEach(p => {
+    if(p.tier !== lastTier){
+      html += `<div class="tier-heading">${tierNames[p.tier] || ''}</div>`;
+      lastTier = p.tier;
+    }
+    html += `
+      <div class="project-card">
+        <div class="project-main">
+          <div class="project-title-row">
+            <div class="project-title">${p.title}</div>
+            ${p.featured ? '<span class="project-featured">Featured</span>' : ''}
+            ${p.domains.map(d => `<span class="project-domain">${d}</span>`).join('')}
+          </div>
+          <div class="project-desc">${p.desc}</div>
+          <div class="project-tags">${p.tags.map(t => `<span>${t}</span>`).join('')}</div>
+        </div>
+        <div class="project-links">
+          ${p.links && p.links.demo ? `<a href="${p.links.demo}" target="_blank">${linkLabel('demo')}</a>` : ''}
+          ${p.links && p.links.github ? `<a href="${p.links.github}" target="_blank">${linkLabel('github')}</a>` : ''}
+          ${p.links && p.links.writeup ? `<a href="${p.links.writeup}" target="_blank">${linkLabel('writeup')}</a>` : ''}
+          ${(!p.links || (!p.links.demo && !p.links.github && !p.links.writeup)) ? '<span style="font-family:var(--mono); font-size:11px; color:var(--ink-soft); opacity:0.6;">link coming soon</span>' : ''}
+        </div>
+      </div>
+    `;
+  });
+
+  projectList.innerHTML = html;
+}
+
+document.getElementById('lastUpdated').textContent = new Date().toLocaleDateString('en-US', { year:'numeric', month:'long' });
+
+renderStats();
+renderProjects();
+</script>
+</body>
+</html>
