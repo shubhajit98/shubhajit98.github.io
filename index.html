@@ -370,6 +370,7 @@ function linkLabel(key){
   if(key === 'demo') return 'Live demo →';
   if(key === 'github') return 'GitHub →';
   if(key === 'writeup') return 'Write-up →';
+  if(key === 'thesis') return 'Read thesis →';
   return key + ' →';
 }
 
@@ -399,6 +400,7 @@ function renderProjects(){
         <div class="project-links">
           ${p.links && p.links.demo ? `<a href="${p.links.demo}" target="_blank">${linkLabel('demo')}</a>` : ''}
           ${p.links && p.links.github ? `<a href="${p.links.github}" target="_blank">${linkLabel('github')}</a>` : ''}
+          ${p.links && p.links.thesis ? `<a href="${p.links.thesis}" target="_blank">${linkLabel('thesis')}</a>` : ''}
           ${p.links && p.links.writeup ? `<a href="${p.links.writeup}" target="_blank">${linkLabel('writeup')}</a>` : ''}
           ${(!p.links || (!p.links.demo && !p.links.github && !p.links.writeup)) ? '<span style="font-family:var(--mono); font-size:11px; color:var(--ink-soft); opacity:0.6;">link coming soon</span>' : ''}
         </div>
