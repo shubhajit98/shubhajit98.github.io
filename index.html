@@ -71,6 +71,10 @@
     background:rgba(27,42,74,0.06); border:1px solid var(--line);
     padding:6px 12px; border-radius:20px;
   }
+  .skill-chip{
+    background:rgba(242,167,59,0.10); border-color:rgba(242,167,59,0.35);
+    color:var(--accent-ink);
+  }
 
   .stats{
     display:flex; gap:0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
@@ -163,17 +167,26 @@
       <span class="focus-chip">Machine Learning</span>
       <span class="focus-chip">Automotive</span>
       <span class="focus-chip">Energy</span>
-      <span class="focus-chip">MATLAB/Simulink</span>
-      <span class="focus-chip">3D CAD</span>
-      <span class="focus-chip">PCB Design</span>
-      <span class="focus-chip">Embedded C</span>
-      <span class="focus-chip">C/C++</span>
-      <span class="focus-chip">Python</span>
-      <span class="focus-chip">ROS2</span>
-      <span class="focus-chip">Sensor Fusion</span>
-      <span class="focus-chip">Signal Processing</span>
+      <span class="focus-chip">Power Electronics</span>
+      <span class="focus-chip">Functional Safety</span>
       <span class="focus-chip">Communication Systems</span>
       <span class="focus-chip">Computer Architecture</span>
+    </div>
+    <div class="focus-label">Skills</div>
+    <div class="focus-row">
+      <span class="focus-chip skill-chip">MATLAB/Simulink</span>
+      <span class="focus-chip skill-chip">3D CAD</span>
+      <span class="focus-chip skill-chip">PCB Design</span>
+      <span class="focus-chip skill-chip">Embedded C</span>
+      <span class="focus-chip skill-chip">C/C++</span>
+      <span class="focus-chip skill-chip">Python</span>
+      <span class="focus-chip skill-chip">ROS2</span>
+      <span class="focus-chip skill-chip">Sensor Fusion</span>
+      <span class="focus-chip skill-chip">Signal Processing</span>
+      <span class="focus-chip skill-chip">RTOS</span>
+      <span class="focus-chip skill-chip">Linux</span>
+      <span class="focus-chip skill-chip">Git/Version Control</span>
+      <span class="focus-chip skill-chip">CI/CD</span>
     </div>
   </header>
 
@@ -197,7 +210,7 @@
    - domains: shown as the small "type" badge(s) on each card
    - featured: true pins it near the top WITHIN its tier
    - tags: shown as small chips on the card (skills used)
-   - links: any of demo / github / writeup — omit ones you don't have
+   - links: any of demo / github / thesis / paper / writeup — omit ones you don't have
    ============================================================ */
 const projects = [
   {
@@ -334,7 +347,7 @@ const projects = [
     tier: 4,
     domains: ["Automotive", "3D CAD"],
     desc: "SolidWorks Motion Analysis studies on IC engine components: simulated the piston assembly's reciprocating motion through the connecting rod and crankshaft, and modeled valve train behavior across varying cam lift, speed, and material parameters.",
-    tags: ["SolidWorks","Multi Body Dynamics", "Motion Planning" ],
+    tags: ["SolidWorks","Multi Body Dynamics", "Motion Analysis" ],
     featured: false,
     links: {}
   },
@@ -357,12 +370,17 @@ const projectCountEl = document.getElementById('projectCount');
 const statsRow = document.getElementById('statsRow');
 
 function renderStats(){
-  const withDemo = projects.filter(p => p.links && p.links.demo).length;
-  const skillCount = document.querySelectorAll('.focus-chip').length;
+  const focusAreaCount = document.querySelectorAll('.focus-chip:not(.skill-chip)').length;
+  const skillCount = document.querySelectorAll('.skill-chip').length;
+  // Manually set — count of real industry organizations you've worked with
+  // (e.g. Atritec AB, SPK-MAK Technologies, TCS). Update this number by hand
+  // if that count changes; it isn't derived from the projects array.
+  const industrialExposures = 3;
   statsRow.innerHTML = `
     <div class="stat"><b>${projects.length}</b><span>Total projects</span></div>
-    <div class="stat"><b>${skillCount}</b><span>Skills &amp; focus areas</span></div>
-    <div class="stat"><b>${withDemo}</b><span>Live demos</span></div>
+    <div class="stat"><b>${focusAreaCount}</b><span>Focus areas</span></div>
+    <div class="stat"><b>${skillCount}</b><span>Skills</span></div>
+    <div class="stat"><b>${industrialExposures}</b><span>Industrial Exposures</span></div>
   `;
 }
 
